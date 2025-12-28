@@ -1,0 +1,7 @@
+import { NextResponse } from "next/server";
+import { TOKENS } from "@/lib/mock";
+
+export function GET() {
+  return NextResponse.json({ tokens: TOKENS });
+}
+

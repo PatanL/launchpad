@@ -1,26 +1,120 @@
 @import "tailwindcss";
 
+/* Tailwind v4 entry */
+@import "tailwindcss";
+
+/* Forge design system — tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0b0b10;
+  --surface: rgba(255,255,255,0.06);
+  --surface-2: rgba(255,255,255,0.09);
+  --border: rgba(255,255,255,0.14);
+  --text: #f8fafc;
+  --muted: #a3a3a3;
+  --mint: #a7f3d0;      /* primary accent */
+  --mint-strong: #34d399;
+  --error: #f87171;
+  --warn: #fbbf24;
+  --ok: #22c55e;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #0b0b10; /* keep dark aesthetic */
+    --text: #f8fafc;
   }
 }
 
+/* Base */
+html, body { height: 100%; }
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Forge effects */
+.forge-gradient {
+  position: absolute;
+  inset: 0;
+  height: 620px;
+  pointer-events: none;
+  z-index: -2;
+  background: url('/forge-assets/gradients/mesh-mint.svg') center top / cover no-repeat;
+  filter: saturate(120%);
+}
+
+.ui-glass {
+  background: color-mix(in srgb, var(--surface) 100%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+}
+
+.ui-glass:hover { background: var(--surface-2); }
+
+.ui-glow {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 8px 30px rgba(0,0,0,0.35);
+}
+
+.ring-mint { box-shadow: 0 0 0 1px color-mix(in srgb, var(--mint) 60%, transparent); }
+.text-mint { color: var(--mint); }
+.bg-mint { background: var(--mint); }
+.border-mint { border-color: color-mix(in srgb, var(--mint) 70%, white); }
+
+/* Helpful micro type */
+.caption { font-size: 12px; color: var(--muted); }
+
+/* Subtle grid lines divider */
+.forge-grid {
+  position: relative;
+}
+.forge-grid:before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background-image: url('/forge-assets/patterns/grid.svg');
+  background-size: auto;
+  opacity: 0.8;
+  mask-image: radial-gradient(70% 50% at 50% 0%, black 50%, transparent 100%);
+}
+
+/* Pattern overlay helper */
+.pattern-dots {
+  background-image: url('/forge-assets/patterns/polka-dots.svg');
+  background-repeat: repeat;
+  opacity: 0.8;
+}
+
+/* Existing utility from earlier discussion */
+.page-bg-gradient { /* kept for compatibility if referenced */ }
+.token-caption { font-size: 12px; }
+
+/* Custom utilities */
+:root {
+  --brand: #0caee4;
+}
+
+html, body { height: 100%; }
+
+/* Simple top gradient backdrop like boop.fun */
+.page-bg-gradient {
+  position: absolute;
+  inset: 0;
+  height: 540px;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(1200px 320px at 50% -50px, rgba(12,174,228,0.35), rgba(12,174,228,0.12) 40%, transparent 70%),
+              radial-gradient(900px 240px at 20% -80px, rgba(125, 211, 252, 0.18), transparent 70%),
+              radial-gradient(900px 240px at 80% -120px, rgba(167, 139, 250, 0.18), transparent 70%);
+  filter: blur(0.5px);
+}
+
+.token-caption { font-size: 12px; }
