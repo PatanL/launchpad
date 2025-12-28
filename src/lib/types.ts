@@ -4,6 +4,7 @@ export interface TokenSummary {
   id: string;
   name: string;
   symbol: string;
+  contract?: string;
   image: string;
   creator: string;
   mcap: number;
@@ -17,4 +18,3 @@ export interface TokenSummary {
 export interface TokenDetail extends TokenSummary {
   description?: string;
 }
-

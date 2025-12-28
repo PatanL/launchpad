@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { TokenSummary } from "@/lib/types";
+import { Sparkline } from "@/components/charts/sparkline";
 
 export function formatNumber(n: number) {
   return Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(n);
@@ -13,7 +14,7 @@ export function TokenCard({ token }: { token: TokenSummary }) {
     <motion.div
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ type: "spring", stiffness: 500, damping: 30 }}
-      className="ui-glass ui-glow rounded-xl overflow-hidden group"
+      className="ui-glass ui-glow rounded-xl overflow-hidden group relative"
     >
       <Link href={`/tokens/${token.id}`} className="block">
         <div className="flex items-center gap-3 px-5 pt-5">
@@ -29,7 +30,7 @@ export function TokenCard({ token }: { token: TokenSummary }) {
             {token.status}
           </div>
         </div>
-        <div className="px-5 pt-4 pb-5 grid grid-cols-3 gap-3 text-sm">
+        <div className="px-5 pt-4 pb-5 grid grid-cols-3 gap-3 text-sm items-center">
           <div className="rounded-md bg-white/5 p-3 text-center">
             <div className="caption">mcap</div>
             <div className="font-semibold">${formatNumber(token.mcap)}</div>
@@ -42,9 +43,11 @@ export function TokenCard({ token }: { token: TokenSummary }) {
             <div className="caption">price</div>
             <div className="font-semibold">{token.price.toFixed(3)}</div>
           </div>
+          <div className="col-span-3 mt-2 flex items-center justify-center">
+            <Sparkline id={token.id} />
+          </div>
         </div>
       </Link>
     </motion.div>
   );
 }
-

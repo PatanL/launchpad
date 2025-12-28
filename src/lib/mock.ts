@@ -5,6 +5,7 @@ export const TOKENS: TokenDetail[] = [
     id: "forge",
     name: "Forge",
     symbol: "FRGE",
+    contract: "Fg3R3xBv1rxQ7P2XzJV1CkX2uKqk9s3mKX1q8XyZFRGE",
     image: "/images/boop-coin.png",
     creator: "@foundry",
     mcap: 2_450_000,
@@ -19,6 +20,7 @@ export const TOKENS: TokenDetail[] = [
     id: "anvil",
     name: "Anvil",
     symbol: "ANVL",
+    contract: "Anv1L9rJb92gk5tT7ZvE1dQ4HaQ8Pp2mJ7wAnv1L4X",
     image: "/images/token-sol.png",
     creator: "@smith",
     mcap: 860_000,
@@ -32,6 +34,7 @@ export const TOKENS: TokenDetail[] = [
     id: "mintglass",
     name: "Mint Glass",
     symbol: "MINT",
+    contract: "MinT6La55sQk9PzQ3f8GL4ssC0nTrActXYZ12345",
     image: "/images/brand.png",
     creator: "@glazier",
     mcap: 1_250_000,
@@ -46,4 +49,3 @@ export const TOKENS: TokenDetail[] = [
 export function getToken(id: string) {
   return TOKENS.find((t) => t.id === id);
 }
-
